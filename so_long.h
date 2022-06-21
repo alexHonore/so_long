@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 17:10:47 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/16 03:21:07 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:35:08 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@
 # define KEY_S			1
 # define KEY_D			2
 
+static const char * const positions[] = {
+	"./images/coin1.xpm",
+	"./images/coin2.xpm",
+	"./images/coin3.xpm",
+	"./images/coin4.xpm",
+	"./images/coin5.xpm",
+	"./images/coin6.xpm",
+};
+
 typedef struct s_param
 {
 	void	*mlx;
@@ -46,6 +55,7 @@ typedef struct s_param
 	void	*collect;
 	void	*exit;
 	void	*player;
+	int		time;
 }				t_param;
 
 typedef struct s_check
@@ -109,11 +119,11 @@ void	check_init(t_check *check);
 void	ft_render(t_param *param, char *map);
 int		move_check(t_param *param, int y, int x);
 int		key_press(int keycode, t_param *param);
-int		check_char(char c, t_check *check);
-int		check_line(char *line, t_check *check);
+int		is_invalid_char(char c, t_check *check);
+int		is_invalid_line(char *line, t_check *check);
 int		check_close(char *line, size_t len);
-int		check_rec(char *line, size_t len);
-int		check_line_closed(char *line, size_t len);
+int		is_not_rectangular(char *line, size_t len);
+int		line_not_full_walls(char *line, size_t len);
 int		cnt_collect(char *map);
 int		exit_game(t_param *param);
 char	*check_cep(t_check *check, char *map);

@@ -6,13 +6,13 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:25:09 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/16 03:20:55 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/21 14:47:26 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_char(char c, t_check *check)
+int	is_invalid_char(char c, t_check *check)
 {
 	if (c == '\n')
 		return (0);
@@ -39,14 +39,14 @@ int	check_char(char c, t_check *check)
 		return (1);
 }
 
-int	check_line(char *line, t_check *check)
+int	is_invalid_line(char *line, t_check *check)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (check_char(line[i], check))
+		if (is_invalid_char(line[i], check))
 		{
 			write(1, "Error : this map is not valid.\n", 32);
 			return (1);
@@ -64,7 +64,7 @@ int	check_close(char *line, size_t len)
 		return (1);
 }
 
-int	check_rec(char *line, size_t len)
+int	is_not_rectangular(char *line, size_t len)
 {
 	if (len != ft_strlen(line) || check_close(line, len))
 	{

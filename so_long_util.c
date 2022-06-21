@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:25:09 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/16 03:21:02 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:27:11 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,17 @@ void	param_init(t_param *param, char *map)
 	param->collect_cnt = 0;
 	param->mlx = mlx_init();
 	param->tile = mlx_xpm_file_to_image(param->mlx, \
-	"./images/snow-tilemap.xpm", &img_width, &img_height);
+	"./images/floor50.xpm", &img_width, &img_height);
 	param->wall = mlx_xpm_file_to_image(param->mlx, \
-	"./images/icecrystal.xpm", &img_width, &img_height);
+	"./images/wall50.xpm", &img_width, &img_height);
 	param->collect = mlx_xpm_file_to_image(param->mlx, \
-	"./images/ice-sword.xpm", &img_width, &img_height);
+	"./images/coin1.xpm", &img_width, &img_height);
 	param->exit = mlx_xpm_file_to_image(param->mlx, \
-	"./images/icebox.xpm", &img_width, &img_height);
+	"./images/door50.xpm", &img_width, &img_height);
 	param->player = mlx_xpm_file_to_image(param->mlx, \
-	"./images/character.xpm", &img_width, &img_height);
+	"./images/perso50.xpm", &img_width, &img_height);
 	param->two_d_map = ft_split(map, '\n');
+	param->time = 5000;
 }
 
 void	ft_error(int exit_code)

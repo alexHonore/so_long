@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:25:09 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/16 03:20:51 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/21 14:46:40 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_init(t_check *check)
 	check->player = 0;
 }
 
-int	check_line_closed(char *line, size_t len)
+int	line_not_full_walls(char *line, size_t len)
 {
 	size_t	i;
 
@@ -36,7 +36,7 @@ int	check_line_closed(char *line, size_t len)
 	return (0);
 }
 
-int	check_lastline_closed(char *line, size_t len, char *lastline)
+int	last_line_not_full_walls(char *line, size_t len)
 {
 	size_t	i;
 
@@ -46,7 +46,7 @@ int	check_lastline_closed(char *line, size_t len, char *lastline)
 		if (line[i] != '1')
 		{
 			write(1, "Error : map must be surrounded by the walls.\n", 46);
-			free(lastline);
+			free(line);
 			return (1);
 		}
 		i++;
@@ -72,18 +72,18 @@ char	*check_map(int fd)
 	line = get_next_line(fd);
 	check.len = ft_strlen(line);
 	map = ft_strndup(line, check.len);
-	if (check_line_closed(line, check.len))
+	if (line_not_full_walls(line, check.len))
 		return (ft_str_free(line, map));
 	while (line)
 	{
-		if (check_rec(line, check.len) || check_line(line, &check))
+		if (is_not_rectangular(line, check.len) || is_invalid_line(line, &check))
 			return (ft_str_free(line, map));
 		lastline = ft_strndup(line, check.len);
 		free(line);
 		line = get_next_line(fd);
 		if (line)
 			map = ft_strjoin(map, line);
-		else if (check_lastline_closed(lastline, check.len, lastline))
+		else if (last_line_not_full_walls(lastline, check.len))
 			return (ft_str_free(line, map));
 		free(lastline);
 	}
