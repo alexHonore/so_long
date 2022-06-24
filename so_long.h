@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 17:10:47 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:08 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:09:10 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ char	*check_cep(t_check *check, char *map);
 char	*ft_str_free(char *line, char *map);
 char	*check_map(int fd);
 size_t	ft_strlen_n(const char *s);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 #endif

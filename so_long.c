@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:25:09 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/21 15:53:31 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:10:17 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	update(t_param	*param, char* map)
 }
 
 */
+
 int	main(int argc, char **argv)
 {
 	t_param	param;
@@ -55,6 +56,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error(1);
+	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+		ft_error(2);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error(0);

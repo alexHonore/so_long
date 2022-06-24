@@ -6,23 +6,12 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:31:59 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/16 03:20:24 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:07:12 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	count;
-
-	if (!s)
-		return (0);
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
-}
 
 char	*ft_strchr(const char *s, int c)
 {

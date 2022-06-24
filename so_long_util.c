@@ -6,7 +6,7 @@
 /*   By: anshimiy <anshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:25:09 by minkim            #+#    #+#             */
-/*   Updated: 2022/06/21 15:27:11 by anshimiy         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:09:01 by anshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,23 @@ void	ft_error(int exit_code)
 		write(1, ": Cannot open the map file.\n", 29);
 	if (exit_code == 1)
 		write(1, ": Please run with a map file.\n", 31);
+	if (exit_code == 2)
+		write(1, ": Please run with a .ber file.\n", 31);
 	exit(exit_code);
 }
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	count;
+
+	if (!s)
+		return (0);
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
+}
+
 
 size_t	ft_strlen_n(const char *s)
 {
@@ -73,6 +88,31 @@ size_t	ft_strlen_n(const char *s)
 		count++;
 	return (count);
 }
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (needle[i] == '\0')
+		return ((char *)haystack);
+	if (ft_strlen(needle) > ft_strlen(haystack))
+		return (NULL);
+	while (i < len && haystack[i] != '\0')
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j < len && haystack[i + j])
+		{
+			if (needle[j + 1] == '\0')
+				return ((char *)(haystack + i));
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 
 int	exit_game(t_param *param)
 {
